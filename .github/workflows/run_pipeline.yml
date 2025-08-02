@@ -1,0 +1,37 @@
+name: ML Pipeline CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Run pipeline
+      env:
+        WANDB_API_KEY: ${{ secrets.WANDB_API_KEY }}
+        KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+        KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+      run: |
+        python src/main.py
+
+    - name: Upload submission
+      uses: actions/upload-artifact@v3
+      with:
+        name: submission
+        path: output/submission.csv

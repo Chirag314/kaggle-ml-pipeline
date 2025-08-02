@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  ml-pipeline:
+    build: .
+    container_name: kaggle_ml_pipeline
+    volumes:
+      - .:/app
+    environment:
+      - WANDB_API_KEY=${WANDB_API_KEY}
+      - KAGGLE_USERNAME=${KAGGLE_USERNAME}
+      - KAGGLE_KEY=${KAGGLE_KEY}
+    command: python src/main.py
