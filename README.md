@@ -17,8 +17,6 @@
 
 This repository is a modular machine learning pipeline designed for **Kaggle-style tabular competitions** with a focus on **fast iteration**, **reproducibility**, and **portfolio-ready deployment**. The current implementation targets a **personality classification workflow** and includes reusable components for feature engineering, model training, inference, ensembling, experiment logging, model explainability, and a lightweight Streamlit dashboard.
 
-The repo currently contains a Python-heavy stack with `src/`, `tests/`, `reports/`, Docker assets, and a GitHub Actions workflow, while the default branch is still `master`. The project README also references a Streamlit dashboard entrypoint at `src/dashboard.py`. citeturn856984view0turn680973view0turn992057view1turn992057view0
-
 ---
 
 ## Project structure
