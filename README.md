@@ -19,7 +19,7 @@ This repository is a modular machine learning pipeline designed for **Kaggle-sty
 
 ---
 
-## Recruiter Snapshot
+## Project Snapshot
 
 - Built an end-to-end ML product workflow from data download to UI inference.
 - Added a reproducible training entrypoint that generates deployable artifacts.
