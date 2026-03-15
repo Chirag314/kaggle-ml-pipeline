@@ -1,7 +1,7 @@
 import unittest
 import pandas as pd
 import numpy as np
-from src.feature_engineering import FeatureGenerator
+from kaggle_ml_pipeline.features.tabular import FeatureGenerator
 
 class TestFeatureGenerator(unittest.TestCase):
     def setUp(self):
@@ -19,7 +19,7 @@ class TestFeatureGenerator(unittest.TestCase):
     def test_transform(self):
         result = self.fg.transform(self.data)
         self.assertIsInstance(result, pd.DataFrame)
-        self.assertTrue(all(result.notna().all()))
+        self.assertTrue(result.notna().all().all())
 
 if __name__ == "__main__":
     unittest.main()

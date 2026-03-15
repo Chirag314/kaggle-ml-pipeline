@@ -11,7 +11,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'run-pipeline=main:run_pipeline'
+            'run-pipeline=kaggle_ml_pipeline.pipeline:run_pipeline'
         ]
     },
     author='Your Name',

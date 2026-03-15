@@ -1,11 +1,15 @@
 import unittest
-import pandas as pd
-from src.main import run_pipeline
+from pathlib import Path
+import tempfile
+
+from kaggle_ml_pipeline.pipeline import run_pipeline
 
 class TestPipelineIntegration(unittest.TestCase):
     def test_pipeline_runs(self):
         try:
-            run_pipeline()
+            with tempfile.TemporaryDirectory() as tmpdir:
+                output_file = run_pipeline(output_path=str(Path(tmpdir) / "submission.csv"))
+                self.assertTrue(output_file.exists())
             self.assertTrue(True)
         except Exception as e:
             self.fail(f"Pipeline failed with exception: {e}")

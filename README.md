@@ -25,78 +25,34 @@ This repository is a modular machine learning pipeline designed for **Kaggle-sty
 kaggle-ml-pipeline/
 ├── .github/
 │   └── workflows/
-│       ├── ci.yml
-│       └── streamlit-smoke.yml
+│       └── run_pipeline.yml
 ├── apps/
 │   ├── streamlit_app.py
 │   └── gradio_api.py
-├── configs/
-│   ├── default.yaml
-│   ├── models/
-│   │   ├── xgb.yaml
-│   │   ├── lgbm.yaml
-│   │   └── catboost.yaml
-│   └── experiments/
-│       └── personality_baseline.yaml
-├── data/
-│   ├── raw/
-│   ├── interim/
-│   ├── processed/
-│   └── external/
-├── docs/
-│   ├── architecture.md
-│   ├── experiment_log.md
-│   └── deployment.md
-├── notebooks/
-│   ├── 01_eda.ipynb
-│   ├── 02_feature_engineering.ipynb
-│   ├── 03_modeling.ipynb
-│   └── 04_error_analysis.ipynb
 ├── reports/
-│   ├── figures/
-│   └── shap/
-├── scripts/
-│   ├── train.py
-│   ├── infer.py
-│   ├── submit.py
-│   ├── run_experiment.py
-│   └── prepare_data.py
+│   └── pipeline_report.html
 ├── src/
+│   ├── main.py
 │   └── kaggle_ml_pipeline/
 │       ├── __init__.py
-│       ├── data/
-│       │   ├── io.py
-│       │   └── validation.py
+│       ├── pipeline.py
 │       ├── features/
-│       │   ├── base.py
-│       │   ├── tabular.py
-│       │   └── selectors.py
+│       │   └── tabular.py
 │       ├── models/
 │       │   ├── train.py
-│       │   ├── infer.py
-│       │   ├── ensemble.py
-│       │   └── tuning.py
-│       ├── explain/
-│       │   └── shap_utils.py
-│       ├── tracking/
-│       │   └── wandb_utils.py
-│       ├── deployment/
-│       │   ├── streamlit_helpers.py
-│       │   └── api_schema.py
+│       │   └── infer.py
 │       └── utils/
+│           ├── exception_handling.py
+│           ├── kaggle_submit.py
 │           ├── logging.py
-│           ├── paths.py
-│           └── seed.py
+│           └── shap_visuals.py
 ├── tests/
-│   ├── test_features.py
-│   ├── test_training.py
-│   ├── test_inference.py
-│   └── test_app_smoke.py
+│   ├── test_feature_engineering.py
+│   └── test_integration.py
 ├── .gitignore
 ├── Dockerfile
 ├── docker-compose.yml
-├── Makefile
-├── pyproject.toml
+├── setup.py
 ├── requirements.txt
 └── README.md
 ```
@@ -153,16 +109,16 @@ pip install -r requirements.txt
 Run the Streamlit dashboard:
 
 ```bash
-streamlit run src/dashboard.py
+streamlit run apps/streamlit_app.py
 ```
 
 Run the API locally:
 
 ```bash
-python src/api.py
+python apps/gradio_api.py
 ```
 
 
 ## License
 
-This repository includes an MIT license in the public GitHub repo. citeturn856984view0
+This repository includes an MIT license in the public GitHub repo.
