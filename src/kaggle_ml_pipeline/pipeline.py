@@ -1,5 +1,6 @@
 from pathlib import Path
 
+import joblib
 import numpy as np
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
@@ -20,9 +21,12 @@ def _load_data():
         if target_col in train.columns:
             y = train[target_col]
             X_train = train.drop(columns=[target_col])
+            if "id" in X_train.columns:
+                X_train = X_train.drop(columns=["id"])
+            X_test = test.drop(columns=["id"]) if "id" in test.columns else test.copy()
         else:
             raise ValueError(f"Target column '{target_col}' not found in data/train.csv")
-        return X_train, y, test, submission
+        return X_train, y, X_test, submission
 
     # Fallback data keeps the entrypoint/test runnable when dataset files are absent.
     X_train = pd.DataFrame(
@@ -43,7 +47,13 @@ def _load_data():
 
 def run_pipeline(output_path="output/submission.csv"):
     X_train, y_raw, X_test, submission = _load_data()
-    y = y_raw.map({"Extrovert": 1, "Introvert": 0}) if y_raw.dtype == object else y_raw
+    label_map = {"Extrovert": 1, "Introvert": 0, "1": 1, "0": 0}
+    y = y_raw.astype(str).str.strip().map(label_map)
+    if y.isna().any():
+        y_num = pd.to_numeric(y_raw, errors="coerce")
+        y = y.fillna(y_num)
+    if y.isna().any():
+        raise ValueError("Unable to normalize target labels in data/train.csv")
     y = y.astype(int)
 
     numerical = X_train.select_dtypes(exclude="object").columns.tolist()
@@ -62,5 +72,10 @@ def run_pipeline(output_path="output/submission.csv"):
 
     output_file = Path(output_path)
     output_file.parent.mkdir(parents=True, exist_ok=True)
+
+    # Persist artifacts for app inference.
+    joblib.dump(model, output_file.parent / "stack_model.pkl")
+    joblib.dump(fg, output_file.parent / "feature_pipeline.pkl")
+
     submission.to_csv(output_file, index=False)
     return output_file

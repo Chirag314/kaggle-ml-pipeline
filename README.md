@@ -1,7 +1,7 @@
 <div align="center">
 
 # Kaggle ML Pipeline
-### Reusable competition pipeline for fast iteration, feature engineering, ensembling, experiment tracking, and lightweight app deployment
+### End-to-end tabular ML system with reproducible training, deployable artifacts, and live prediction apps
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](#)
 [![Framework](https://img.shields.io/badge/ML-scikit--learn%20%7C%20XGBoost%20%7C%20LightGBM%20%7C%20CatBoost-orange)](#)
@@ -16,6 +16,39 @@
 ## Overview
 
 This repository is a modular machine learning pipeline designed for **Kaggle-style tabular competitions** with a focus on **fast iteration**, **reproducibility**, and **portfolio-ready deployment**. The current implementation targets a **personality classification workflow** and includes reusable components for feature engineering, model training, inference, ensembling, experiment logging, model explainability, and a lightweight Streamlit dashboard.
+
+---
+
+## Recruiter Snapshot
+
+- Built an end-to-end ML product workflow from data download to UI inference.
+- Added a reproducible training entrypoint that generates deployable artifacts.
+- Integrated a user-facing Streamlit app and a Gradio endpoint for quick demos.
+- Structured the project with CI, tests, Docker files, and clear separation of concerns.
+- Applied practical security hygiene for local data and credential handling.
+
+## Key Outcomes
+
+- One-command pipeline execution with deterministic output artifacts for inference.
+- Feature engineering logic reused across training and app prediction flows.
+- Download automation for Kaggle data with secure local credential handling.
+- Interview-ready product demo through Streamlit and Gradio interfaces.
+- Test coverage for feature transformation and pipeline integration paths.
+
+## Why This Project Stands Out
+
+- **Business framing:** Converts behavioral inputs into an instant personality prediction.
+- **Engineering quality:** Modular source layout, reusable feature transformer, and clean utility boundaries.
+- **Operational readiness:** One-command data download script, deterministic output artifacts, and app-ready model files.
+- **Demo readiness:** Local UI can be shown live during interviews and recruiter screens.
+
+## Skills Demonstrated
+
+- Machine learning pipeline design for tabular classification
+- Feature engineering and schema-aligned inference
+- Python packaging with src layout and reusable modules
+- Debugging, test-driven fixes, and compatibility hardening
+- Product-minded ML delivery with deployable web interfaces
 
 ---
 
@@ -63,27 +96,47 @@ kaggle-ml-pipeline/
 
 1. Load tabular competition data
 2. Apply feature engineering and transformation pipeline
-3. Train multiple base learners such as XGBoost, LightGBM, and CatBoost
+3. Train a runnable baseline classifier and export model artifacts
 4. Run cross-validation and track out-of-fold metrics
 5. Blend or stack model predictions
 6. Log metrics, feature importance, and SHAP artifacts to W&B
 7. Export trained artifacts for local inference and app deployment
 
-The raw code references XGBoost, LightGBM, CatBoost, stacking, blend-weight search, Optuna-style optimization, W&B logging, and SHAP analysis. 
+The repository includes experimentation references for XGBoost, LightGBM, CatBoost, stacking, Optuna search, W&B logging, and SHAP analysis.
 
 ### Serving layer
 
 The repo includes:
 
 - a **Streamlit dashboard** for interactive personality prediction
-- a **Gradio API** path mentioned in the README
+- a **Gradio interface** for lightweight API-style interaction
 - Docker support through `Dockerfile` and `docker-compose.yml`
 
-The dashboard currently loads `output/stack_model.pkl` and `output/feature_pipeline.pkl`, accepts user inputs such as age and trait scores, and returns an introvert/extrovert prediction with confidence. 
+The dashboard loads `output/stack_model.pkl` and `output/feature_pipeline.pkl`, accepts behavioral features from the Kaggle dataset schema, and returns an introvert/extrovert prediction with confidence.
 
 ---
 
-## Streamlit application
+## Product Demo
+
+### Streamlit application
+
+The Streamlit app is now aligned with the trained model schema and supports live prediction using these input fields:
+
+- `Time_spent_Alone`
+- `Stage_fear`
+- `Social_event_attendance`
+- `Going_outside`
+- `Drained_after_socializing`
+- `Friends_circle_size`
+- `Post_frequency`
+
+### Generated artifacts
+
+Running the pipeline writes these files for deployment-ready inference:
+
+- `output/submission.csv`
+- `output/stack_model.pkl`
+- `output/feature_pipeline.pkl`
 
 ```md
 ## Live Demo
@@ -118,6 +171,12 @@ Run the Streamlit dashboard:
 
 ```bash
 streamlit run apps/streamlit_app.py
+```
+
+Run the training pipeline before launching apps:
+
+```bash
+PYTHONPATH=src python src/main.py
 ```
 
 Run the API locally:
