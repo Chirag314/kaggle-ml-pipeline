@@ -142,12 +142,15 @@ Running the pipeline writes these files for deployment-ready inference:
 
 The Streamlit app is interactive: choose the input options and click **Predict Personality** to generate a result with confidence.
 
+Demo status: Streamlit preview live | Streamlit public pending | Gradio public pending.
+
 - Current live preview (Codespaces, temporary): [Open App](https://shiny-computing-machine-vrpv5w5xpvjfprvg-8501.app.github.dev/)
-- Stable public Streamlit URL (replace after deployment): [Open App](https://your-app-name.streamlit.app)
-- Gradio endpoint (optional): [Open API Demo](https://your-space.hf.space)
+- Stable public Streamlit URL: Pending deployment
+- Gradio endpoint (optional): Pending deployment
 
 > Note: the Codespaces preview link can expire, rotate, or require login. Keep it as a temporary demo only.
 > Known limitation: after restarting Codespaces, the preview URL may change. If it stops working, relaunch the app and update the README link.
+> Gradio is also interactive, but it only gets a public clickable URL after deployment. For local testing in Codespaces, run `python apps/gradio_api.py` and open the forwarded Gradio port.
 
 ## Deploy to Streamlit Cloud (Stable Link)
 
