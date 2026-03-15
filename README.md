@@ -138,16 +138,37 @@ Running the pipeline writes these files for deployment-ready inference:
 - `output/stack_model.pkl`
 - `output/feature_pipeline.pkl`
 
-```md
 ## Live Demo
-- Streamlit app: _Add deployed Streamlit URL here after publishing_
+
+The Streamlit app is interactive: choose the input options and click **Predict Personality** to generate a result with confidence.
+
+- Current live preview (Codespaces, temporary): [Open App](https://shiny-computing-machine-vrpv5w5xpvjfprvg-8501.app.github.dev/)
+- Stable public Streamlit URL (replace after deployment): [Open App](https://your-app-name.streamlit.app)
+- Gradio endpoint (optional): [Open API Demo](https://your-space.hf.space)
+
+> Note: the Codespaces preview link can expire, rotate, or require login. Keep it as a temporary demo only.
+> Known limitation: after restarting Codespaces, the preview URL may change. If it stops working, relaunch the app and update the README link.
+
+## Deploy to Streamlit Cloud (Stable Link)
+
+1. Push your latest code to GitHub.
+2. Open [Streamlit Community Cloud](https://share.streamlit.io) and sign in with GitHub.
+3. Create a new app and select this repo/branch:
+	- Repo: `Chirag314/kaggle-ml-pipeline`
+	- Branch: `main`
+	- Main file: `apps/streamlit_app.py`
+4. Click **Deploy** and copy your stable URL.
+5. Replace the placeholder link above with your real Streamlit URL.
+
+## Local Demo (No Public Deployment Yet)
+
+If you have not deployed publicly, reviewers can still run the app locally:
+
+```bash
+streamlit run apps/streamlit_app.py --server.address 0.0.0.0 --server.port 8501
 ```
 
-Once deployed, replace that placeholder with your actual app URL and use a clickable link such as:
-
-```md
-- Streamlit dashboard: [Open App](https://your-app-name.streamlit.app)
-```
+Then open `http://localhost:8501` (or use your development environment's forwarded port URL).
 
 ## Quickstart
 

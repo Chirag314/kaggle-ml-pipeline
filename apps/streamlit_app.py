@@ -13,8 +13,15 @@ if str(SRC) not in sys.path:
 st.title("Personality Prediction Dashboard")
 
 # Load trained model and feature generator
-stack_model = joblib.load("output/stack_model.pkl")
-feature_gen = joblib.load("output/feature_pipeline.pkl")
+MODEL_PATH = ROOT / "output" / "stack_model.pkl"
+PIPELINE_PATH = ROOT / "output" / "feature_pipeline.pkl"
+
+if not MODEL_PATH.exists() or not PIPELINE_PATH.exists():
+    st.error("Required model artifacts are missing in output/. Run the training pipeline first.")
+    st.stop()
+
+stack_model = joblib.load(MODEL_PATH)
+feature_gen = joblib.load(PIPELINE_PATH)
 
 st.markdown("### Input your personality traits")
 
