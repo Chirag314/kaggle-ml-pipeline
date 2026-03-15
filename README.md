@@ -106,6 +106,14 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+Download competition data into the local data folder:
+
+```bash
+export KAGGLE_USERNAME=your_kaggle_username
+export KAGGLE_KEY=your_kaggle_api_key
+python download_data.py
+```
+
 Run the Streamlit dashboard:
 
 ```bash

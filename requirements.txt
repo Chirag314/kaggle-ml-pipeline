@@ -7,4 +7,4 @@ catboost
 wandb
 matplotlib
 seaborn
-category_encoders
+kaggle

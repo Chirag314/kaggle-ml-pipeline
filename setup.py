@@ -7,7 +7,7 @@ setup(
     package_dir={'': 'src'},
     install_requires=[
         'pandas', 'numpy', 'scikit-learn', 'xgboost', 'lightgbm', 'catboost',
-        'category_encoders', 'matplotlib', 'seaborn', 'wandb', 'shap'
+        'matplotlib', 'seaborn', 'wandb', 'shap', 'kaggle'
     ],
     entry_points={
         'console_scripts': [

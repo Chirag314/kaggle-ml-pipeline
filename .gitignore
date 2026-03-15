@@ -2,5 +2,14 @@
 __pycache__/
 *.pyc
 .env
+.env.*
 submission.csv
 submission1.csv
+
+# Local dataset copies
+data/
+
+# Kaggle credentials (local only)
+.kaggle/
+kaggle.json
+**/kaggle.json

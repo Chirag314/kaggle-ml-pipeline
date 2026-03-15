@@ -7,7 +7,6 @@ from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score, log_loss
 from sklearn.feature_selection import mutual_info_classif
 from sklearn.base import BaseEstimator, TransformerMixin
-from category_encoders import TargetEncoder
 from sklearn.preprocessing import KBinsDiscretizer
 from sklearn.ensemble import VotingClassifier
 import matplotlib.pyplot as plt
